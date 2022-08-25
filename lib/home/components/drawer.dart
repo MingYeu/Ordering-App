@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:order/home/components/addToChart.dart';
 import 'package:order/home/components/home_screen.dart';
+import 'package:order/home/components/login.dart';
 
 class NavigationDrawer extends StatelessWidget {
   const NavigationDrawer({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class NavigationDrawer extends StatelessWidget {
   Widget buildHeader(BuildContext context) => Container(
       color: Colors.blue,
       padding: EdgeInsets.only(
-        top: MediaQuery.of(context).padding.top,
+        top: MediaQuery.of(context).padding.top * 2,
         bottom: 24,
       ),
       child: Column(
@@ -51,27 +52,40 @@ class NavigationDrawer extends StatelessWidget {
                 builder: (context) => HomeScreen(),
               )),
             ),
-            const Divider(color: Colors.black45),
             ListTile(
               leading: const Icon(Icons.favorite_border),
-              title: const Text('Favourites'),
+              title: const Text('Add To Chart'),
               onTap: () {
-                Navigator.pop(context);
+                // Navigator.pop(context);
 
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => AddToChartHome(),
-                ));
+                // Navigator.of(context).push(MaterialPageRoute(
+                //   builder: (context) => AddToChartHome(),
+                // ));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return AddToChartHome();
+                    },
+                  ),
+                );
               },
             ),
+            const Divider(color: Colors.black45),
             ListTile(
-              leading: const Icon(Icons.workspaces_outlined),
-              title: const Text('Workflow'),
-              onTap: () {},
-            ),
-            ListTile(
-              leading: const Icon(Icons.update),
-              title: const Text('Updates'),
-              onTap: () {},
+              leading: const Icon(Icons.logout),
+              title: const Text('Log Out'),
+              onTap: () {
+                Login();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Login();
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),

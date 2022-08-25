@@ -3,17 +3,39 @@ import 'package:order/home/components/searchbox.dart';
 import 'package:order/home/components/tab_bar.dart';
 import 'package:order/home/components/drawer.dart';
 import 'package:order/home/components/body.dart';
+import 'package:order/home/components/addToChart.dart';
 
 class HomeScreen extends StatelessWidget {
+  Future<bool?> showWarning(BuildContext context) async => showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Do you want to exit app?"),
+          actions: [
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: Text('No'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context, true),
+              child: Text('Yes'),
+            ),
+          ],
+        ),
+      );
+
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: builderAppBar(),
-      drawer: NavigationDrawer(),
-      body: Body(),
-      // bottomNavigationBar: MyBottomNavBar(),
-    );
-  }
+  Widget build(BuildContext context) => WillPopScope(
+        onWillPop: () async {
+          final shouldPop = await showWarning(context);
+          return shouldPop ?? false;
+        },
+        child: Scaffold(
+          appBar: builderAppBar(),
+          drawer: NavigationDrawer(),
+          body: Body(),
+          // bottomNavigationBar: MyBottomNavBar(),
+        ),
+      );
 
   AppBar builderAppBar() {
     // return AppBar(
@@ -28,6 +50,21 @@ class HomeScreen extends StatelessWidget {
         'Home',
         style: TextStyle(fontSize: 22.0),
       ),
+      // actions: [
+      //   IconButton(
+      //     icon: Icons.search,
+      //     onPressed: () {
+      //       Navigator.push(
+      //             context,
+      //             MaterialPageRoute(
+      //               builder: (context) {
+      //                 return AddToChartHome();
+      //               },
+      //             ),
+      //           );
+      //     },
+      //   ),
+      // ],
     );
   }
 }
