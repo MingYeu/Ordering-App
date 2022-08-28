@@ -1,8 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:order/home/components/searchbox.dart';
-import 'package:order/home/components/tab_bar.dart';
-import 'package:order/home/components/drawer.dart';
-import 'package:order/home/components/RecommendFood.dart';
+import 'package:order/food/components/foodData.dart';
+import 'package:order/home/components/home_screen.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -44,29 +44,37 @@ class gridview extends StatelessWidget {
         children: <Widget>[
           Container(
             child: RecomendFoodCard(
-              image: "assets/images/image_3.png",
-              title: "Smantha",
-              country: "Russia",
-              price: 440,
-              press: () {},
+              image: foodImage[0],
+              title: foodName[0],
+              price: foodPrice[0],
+              press: () {
+                //Automatic add in
+
+                // foodSelectImage.add(foodImage[0]);
+                // foodSelectName.add(foodName[0]);
+                // foodSelectPrice.add(foodPrice[0]);
+
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) {
+                //       return HomeScreen();
+                //     },
+                //   ),
+                // );
+              },
             ),
           ),
           Container(
             child: RecomendFoodCard(
-              image: "assets/images/image_2.png",
-              title: "Angelia",
-              country: "Russia",
-              price: 440,
-              press: () {},
-            ),
-          ),
-          Container(
-            child: RecomendFoodCard(
-              image: "assets/images/image_1.png",
-              title: "Smantha",
-              country: "Russia",
-              price: 440,
-              press: () {},
+              image: foodImage[1],
+              title: foodName[1],
+              price: foodPrice[1],
+              press: () {
+                // foodSelectImage.add(foodImage[1]);
+                // foodSelectName.add(foodName[1]);
+                // foodSelectPrice.add(foodPrice[1]);
+              },
             ),
           ),
         ],
@@ -80,12 +88,11 @@ class RecomendFoodCard extends StatelessWidget {
     Key? key,
     required this.image,
     required this.title,
-    required this.country,
     required this.price,
     required this.press,
   }) : super(key: key);
 
-  final String image, title, country;
+  final String image, title;
   final int price;
   final Function press;
 
@@ -128,15 +135,15 @@ class RecomendFoodCard extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: "$title\n".toUpperCase(),
+                          text: "$title\n",
                           style: Theme.of(context).textTheme.button,
                         ),
-                        TextSpan(
-                          text: "$country".toUpperCase(),
-                          style: TextStyle(
-                            color: Colors.green.withOpacity(0.5),
-                          ),
-                        ),
+                        // TextSpan(
+                        //   text: "$country".toUpperCase(),
+                        //   style: TextStyle(
+                        //     color: Colors.green.withOpacity(0.5),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -147,7 +154,31 @@ class RecomendFoodCard extends StatelessWidget {
                         .textTheme
                         .button
                         ?.copyWith(color: Colors.green),
-                  )
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      foodSelectImage.add(image);
+                      foodSelectName.add(title);
+                      foodSelectPrice.add(price);
+
+                      final snackBar = SnackBar(
+                        duration: const Duration(seconds: 1),
+                        content: Text('$title Added'),
+                        // action: SnackBarAction(
+                        //   label: 'Undo',
+                        //   onPressed: () {
+                        //     // Some code to undo the change.
+                        //   },
+                        // ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                      // _check(context);
+                      // Timer(Duration(seconds: 1), () => Navigator.pop(context));
+                    },
+                    icon: Icon(Icons.add),
+                  ),
+                  // _check();
                 ],
               ),
             ),
@@ -155,5 +186,19 @@ class RecomendFoodCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _check(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return SingleChildScrollView(
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text("Added"),
+                ]),
+          );
+        });
   }
 }

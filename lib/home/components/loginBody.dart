@@ -23,6 +23,17 @@ class _BodyState extends State<LoginBody> {
     });
     String userEmail = emailController.text;
     String userPwd = passwordController.text;
+    if (userEmail == 'yeu') {
+      if (userPwd == '123') {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => HomeScreen(),
+          ),
+          (route) => false,
+        );
+      }
+    }
   }
 
   @override
@@ -52,7 +63,7 @@ class _BodyState extends State<LoginBody> {
               SizedBox(height: size.height * 0.03),
               RoundedInputField(
                 validator: validateEmail,
-                hintText: "Email",
+                hintText: "Username",
                 icon: Icons.email_outlined,
                 onChanged: (value) {},
                 controller: emailController,
@@ -111,15 +122,21 @@ class _BodyState extends State<LoginBody> {
   }
 
   String? validateEmail(String? value) {
-    String _msg = '';
-    RegExp regex = new RegExp(
-        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+    // String _msg = '';
+    // RegExp regex = new RegExp(
+    //     r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+    // if (value!.isEmpty) {
+    //   _msg = "Your email is required";
+    //   return _msg;
+    // } else if (!regex.hasMatch(value)) {
+    //   _msg = "Please provide a valid email address";
+    //   return _msg;
+    // }
+    // return null;
+    String _user = '';
     if (value!.isEmpty) {
-      _msg = "Your email is required";
-      return _msg;
-    } else if (!regex.hasMatch(value)) {
-      _msg = "Please provide a valid email address";
-      return _msg;
+      _user = "Your username is required";
+      return _user;
     }
     return null;
   }

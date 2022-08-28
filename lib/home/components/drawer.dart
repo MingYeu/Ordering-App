@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:order/home/components/addToChart.dart';
+import 'package:order/food/components/check.dart';
 import 'package:order/home/components/home_screen.dart';
 import 'package:order/home/components/login.dart';
+import 'package:order/food/components/chartBody.dart';
+import 'package:order/food/components/foodData.dart';
+
+import '../../food/components/bill.dart';
 
 class NavigationDrawer extends StatelessWidget {
   const NavigationDrawer({Key? key}) : super(key: key);
@@ -46,7 +50,7 @@ class NavigationDrawer extends StatelessWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.home_outlined),
-              title: const Text('Home'),
+              title: const Text('Menu'),
               onTap: () =>
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                 builder: (context) => HomeScreen(),
@@ -57,7 +61,6 @@ class NavigationDrawer extends StatelessWidget {
               title: const Text('Add To Chart'),
               onTap: () {
                 // Navigator.pop(context);
-
                 // Navigator.of(context).push(MaterialPageRoute(
                 //   builder: (context) => AddToChartHome(),
                 // ));
@@ -65,7 +68,41 @@ class NavigationDrawer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return AddToChartHome();
+                      return ChartBody();
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.paid),
+              title: const Text('Bill'),
+              onTap: () {
+                // Navigator.pop(context);
+
+                // Navigator.of(context).push(MaterialPageRoute(
+                //   builder: (context) => AddToChartHome(),
+                // ));
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Bill();
+                    },
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.paid),
+              title: const Text('Bill Check'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Bill_Check();
                     },
                   ),
                 );
@@ -76,7 +113,6 @@ class NavigationDrawer extends StatelessWidget {
               leading: const Icon(Icons.logout),
               title: const Text('Log Out'),
               onTap: () {
-                Login();
                 Navigator.push(
                   context,
                   MaterialPageRoute(

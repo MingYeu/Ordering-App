@@ -6,6 +6,18 @@ class RecommendsFoods extends StatelessWidget {
   //   Key? key,
   // }) : super(key: key);
 
+  List<String> dataImage = [
+    'assets/images/food/rice.png',
+    'assets/images/food/milk.png',
+    'assets/images/food/onion.png',
+    'assets/images/food/bread.png',
+    'assets/images/food/rice.png',
+    'assets/images/food/milk.png',
+    'assets/images/food/onion.png',
+    'assets/images/food/bread.png',
+    'assets/images/food/rice.png'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -13,8 +25,8 @@ class RecommendsFoods extends StatelessWidget {
       child: Row(
         children: <Widget>[
           RecomendPlantCard(
-            image: "assets/images/image_1.png",
-            title: "Smantha",
+            image: "assets/images/food/rice.png",
+            title: "Rice",
             country: "Russia",
             price: 440,
             press: () {
@@ -26,30 +38,25 @@ class RecommendsFoods extends StatelessWidget {
             },
           ),
           RecomendPlantCard(
-            image: "assets/images/image_2.png",
-            title: "Angelia",
+            image: "assets/images/food/bread.png",
+            title: "Bread",
             country: "Russia",
             price: 440,
-            press: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => DetailsScreen(),
-              //     ));
-            },
+            press: () {},
           ),
           RecomendPlantCard(
-            image: "assets/images/image_3.png",
-            title: "Smantha",
+            image: "assets/images/food/milk.png",
+            title: "Milk",
             country: "Russia",
             price: 440,
-            press: () {
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => DetailsScreen(),
-              //     ));
-            },
+            press: () {},
+          ),
+          RecomendPlantCard(
+            image: "assets/images/food/onion.png",
+            title: "Onion",
+            country: "Amerika",
+            price: 440,
+            press: () {},
           ),
         ],
       ),

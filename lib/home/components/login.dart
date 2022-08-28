@@ -19,6 +19,8 @@ class Login extends StatelessWidget {
         foregroundColor: Colors.black,
         bottomOpacity: 0.0,
         elevation: 0.0,
+        // titleSpacing: 0,
+        automaticallyImplyLeading: false,
       ),
       body: LoginBody(),
     );

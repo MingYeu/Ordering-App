@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:order/home/components/searchbox.dart';
-import 'package:order/home/components/tab_bar.dart';
 import 'package:order/home/components/drawer.dart';
 import 'package:order/home/components/body.dart';
-import 'package:order/home/components/addToChart.dart';
 
 class HomeScreen extends StatelessWidget {
   Future<bool?> showWarning(BuildContext context) async => showDialog<bool>(
